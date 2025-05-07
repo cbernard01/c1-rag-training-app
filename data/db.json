@@ -1,0 +1,52 @@
+{
+  "messages": [
+    {
+      "role": "user",
+      "content": "hello",
+      "id": "b4105ece-70d2-40da-879a-19b0d95c2dcf",
+      "createdAt": "2025-05-07T23:38:04.756Z"
+    },
+    {
+      "role": "assistant",
+      "content": "Hello! How can I assist you today?",
+      "id": "deb903ac-c3f9-492d-9cf0-ff711aad5698",
+      "createdAt": "2025-05-07T23:38:05.439Z"
+    },
+    {
+      "role": "user",
+      "content": "my name is cliff",
+      "id": "fabd3b61-fa77-4c6e-bbfc-4c88a3736331",
+      "createdAt": "2025-05-07T23:38:11.283Z"
+    },
+    {
+      "role": "assistant",
+      "content": "Nice to meet you, Cliff! How can I help you today?",
+      "id": "6c649fe1-0e9a-443a-9b03-df42e96016f8",
+      "createdAt": "2025-05-07T23:38:12.075Z"
+    },
+    {
+      "role": "user",
+      "content": "Im fine. What is my name?",
+      "id": "04ae7cab-2636-4278-b7e7-1a9bc982a69b",
+      "createdAt": "2025-05-07T23:38:15.522Z"
+    },
+    {
+      "role": "assistant",
+      "content": "Your name is Cliff. How can I assist you further?",
+      "id": "6a1ccb92-d3ad-4d3f-ae6c-4e7d7bc31966",
+      "createdAt": "2025-05-07T23:38:16.106Z"
+    },
+    {
+      "role": "user",
+      "content": "Im fine. What is my name?",
+      "id": "6829334c-dd08-491d-832d-3a4dea26d03a",
+      "createdAt": "2025-05-07T23:41:41.973Z"
+    },
+    {
+      "role": "assistant",
+      "content": "Your name is Cliff. If there's anything else you'd like to talk about or ask, feel free!",
+      "id": "d0a3097c-e68f-4035-bd95-9d56ae779c68",
+      "createdAt": "2025-05-07T23:41:42.899Z"
+    }
+  ]
+}
