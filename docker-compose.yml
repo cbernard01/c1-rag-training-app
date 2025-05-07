@@ -1,0 +1,38 @@
+name: c1-northstar
+services:
+  postgres:
+    image: postgres:latest
+    container_name: ai-db
+    environment:
+      POSTGRES_DB: test_db
+      POSTGRES_USER: dbadmin
+      POSTGRES_PASSWORD: password
+    volumes:
+      - postgres_data:/var/lib/postgresql/database/data
+    ports:
+      - "5433:5432"
+
+  redis:
+    image: redis:latest
+    container_name: ai-redis
+    volumes:
+      - redis_data:/var/lib/redis/data
+    ports:
+      - "6380:6379"
+
+  vectorstore:
+    image: ankane/pgvector:latest
+    container_name: ai-vectorstore
+    environment:
+      POSTGRES_DB: vector_db
+      POSTGRES_USER: dbadmin
+      POSTGRES_PASSWORD: password
+    volumes:
+      - vectorstore_data:/var/lib/postgresql/vectorstore/data
+    ports:
+      - "5434:5432"
+
+volumes:
+  redis_data:
+  postgres_data:
+  vectorstore_data:
