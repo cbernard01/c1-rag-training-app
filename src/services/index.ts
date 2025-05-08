@@ -1,3 +1,4 @@
+export * from "./agent-service";
 export * from "./import-service";
 export * from "./llm-service";
 export * from "./memory-service";

@@ -5,7 +5,15 @@ import { v4 as uuidv4 } from "uuid";
 
 const DATA_SOURCE = "data/db.json";
 
-class MemoryService {
+interface IMemoryService {
+  addToolCallResponse(toolCallId: string, toolResponse: string): Promise<void>;
+  add(message: TAIMessage): Promise<void>;
+  getAll(): Promise<TAIMessage[]>;
+  delete(id: string): Promise<void>;
+  clear(): Promise<void>;
+}
+
+class MemoryService implements IMemoryService {
   private _memory!: Low<{ messages: TMessageWithMetadata[] }>;
   private static _instance: MemoryService;
   private _initialized: boolean = false;
@@ -35,6 +43,13 @@ class MemoryService {
         await this._initPromise;
       }
     }
+  }
+
+  // Add tool call to the memory
+  async addToolCallResponse(toolCallId: string, toolResponse: string) {
+    await this.ensureInitialized();
+    this.add({ role: "tool", content: toolResponse, tool_call_id: toolCallId });
+    await this._memory.write();
   }
 
   // Add a message to the memory
@@ -96,6 +111,7 @@ class MemoryService {
 
 // Export the singleton instance
 const memoryService = MemoryService.getInstance();
+type TMemoryService = typeof memoryService;
 
 export { memoryService };
-export type { MemoryService };
+export type { TMemoryService };

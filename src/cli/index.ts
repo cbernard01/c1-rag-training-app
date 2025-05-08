@@ -1,6 +1,6 @@
 import "dotenv/config";
 
-import { llmService, memoryService } from "@/services";
+import { agentService } from "@/services";
 
 const userMessage = process.argv[2];
 
@@ -10,13 +10,7 @@ if (!userMessage) {
 }
 
 async function main() {
-  await memoryService.add({ role: "user", content: userMessage });
-  const messages = await memoryService.getAll();
-
-  const response = await llmService.run({ messages });
-
-  await memoryService.add(response);
-
+  const response = await agentService.execute(userMessage);
   console.log(response.content);
 }
 

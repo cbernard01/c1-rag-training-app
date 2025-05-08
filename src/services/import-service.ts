@@ -14,7 +14,11 @@ if (!UPSTASH_VECTOR_REST_URL || !UPSTASH_VECTOR_REST_TOKEN) {
   throw new Error("UPSTASH_VECTOR_REST_URL and UPSTASH_VECTOR_REST_TOKEN must be set");
 }
 
-class ImportService {
+interface IImportService {
+  importAllFromCSV(dataSource: string): Promise<void>;
+}
+
+class ImportService implements IImportService {
   private readonly _db: UpstashIndex;
 
   constructor() {

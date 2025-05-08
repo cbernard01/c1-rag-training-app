@@ -1,4 +1,5 @@
 import { OpenAI } from "openai";
+import { ZodType } from "zod";
 
 export type TMovie = {
   id: string;
@@ -33,9 +34,16 @@ export type TQueryParams = {
 
 export type TAIMessage = OpenAI.Chat.Completions.ChatCompletionAssistantMessageParam | { role: "user"; content: string } | { role: "tool"; content: string; tool_call_id: string };
 
-export interface ToolFn<A = unknown, T = unknown> {
-  (input: { userMessage: string; toolArgs: A }): Promise<T>;
-}
+type Parameters = ZodType;
+
+export type TToolCall = OpenAI.Chat.Completions.ChatCompletionMessageToolCall;
+
+export type TTool<A = unknown, T = unknown> = {
+  name: string;
+  parameters: Parameters;
+  function: (input: { message: string; toolArgs: A }) => Promise<T>;
+  description?: string | undefined;
+};
 
 export type TMessageWithMetadata = TAIMessage & {
   id: string;

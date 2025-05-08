@@ -51,6 +51,7 @@
     "dotenv": "^16.5.0",
     "embla-carousel-react": "^8.6.0",
     "framer-motion": "^12.10.1",
+    "gpt-tokenizer": "^2.9.0",
     "input-otp": "^1.4.2",
     "lowdb": "^7.0.1",
     "lucide-react": "^0.494.0",
