@@ -1,10 +1,10 @@
-import { TAIMessage, TOllamaChatResponse, TOllamaEmbeddingResponse, TTool } from "@/types";
+import { TAIMessage, TOllamaChatResponse, TOllamaEmbeddingResponse, TOllamaFunctionSpec } from "@/types";
 
 type TChatCompletionParams = {
   model: string;
   messages: TAIMessage[];
   temperature?: number;
-  tools?: TTool[];
+  tools?: TOllamaFunctionSpec[];
   tool_choice?: string;
   parallel_tool_calls?: boolean;
 };

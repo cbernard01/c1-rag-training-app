@@ -1,5 +1,14 @@
 import { TAIMessage } from "@/types";
 
+export type TOllamaFunctionSpec = {
+  type: "function";
+  function: {
+    name: string;
+    description: string;
+    parameters: Record<string, unknown>;
+  };
+};
+
 export type TOllamaEmbedding = {
   object: "embedding";
   embedding: number[];
