@@ -1,38 +1,39 @@
-name: c1-northstar
+name: c1-rag-training-service
 services:
   postgres:
     image: postgres:latest
-    container_name: ai-db
+    container_name: c1-rag-training-service-postgres
     environment:
       POSTGRES_DB: test_db
       POSTGRES_USER: dbadmin
       POSTGRES_PASSWORD: password
     volumes:
-      - postgres_data:/var/lib/postgresql/database/data
+      - postgres_data:/var/lib/postgresql/data
     ports:
-      - "5433:5432"
+      - "5435:5432"
 
   redis:
     image: redis:latest
-    container_name: ai-redis
+    container_name: c1-rag-training-service-redis
     volumes:
       - redis_data:/var/lib/redis/data
     ports:
-      - "6380:6379"
+      - "6381:6379"
 
-  vectorstore:
-    image: ankane/pgvector:latest
-    container_name: ai-vectorstore
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: c1-rag-training-service-qdrant
     environment:
-      POSTGRES_DB: vector_db
-      POSTGRES_USER: dbadmin
-      POSTGRES_PASSWORD: password
+      QDRANT__SERVICE__GRPC_PORT: 6333
+      QDRANT__SERVICE__HTTP_PORT: 6334
+      QDRANT__STORAGE__PATH: /qdrant/storage
     volumes:
-      - vectorstore_data:/var/lib/postgresql/vectorstore/data
+      - qdrant_data:/qdrant/storage
     ports:
-      - "5434:5432"
+      - "6340:6333"
+      - "6341:6334"
 
 volumes:
   redis_data:
   postgres_data:
-  vectorstore_data:
+  qdrant_data:
