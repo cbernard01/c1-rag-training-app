@@ -36,8 +36,28 @@ class AgentService implements IAgentService {
     // 1. create a new message object
     const message: TAIMessage = { role: "user", content: userMessage };
 
+    await this._memorySvc.add(message);
+
+    const messages = await this._memorySvc.getAll();
+
+    // 4. get all tools
+    const tools = await this._toolsSvc.getAll();
+
+    const response = await this._llmSvc.execute({ messages, tools });
+
+    await this._memorySvc.add(response);
+
+    // 9. execute any tool calls
+    const toolResult = await this._executeTool(response, userMessage);
+
+    // 10. save the tool call to memory
+    if (toolResult) {
+      response.content = toolResult;
+      await this._memorySvc.add({ role: "assistant", content: toolResult });
+    }
+
     // 2. Return the message
-    return message;
+    return response;
   }
 
   // Private methods
